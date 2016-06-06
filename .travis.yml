@@ -1,0 +1,28 @@
+language: php
+
+php:
+  - 5.4
+  - 5.5
+  - 5.6
+  - 7.0
+
+install:
+  - composer install
+
+script:
+  - cookie/vendor/bin/parallel-lint --exclude cookie/vendor .
+
+before_deploy:
+  - composer install --no-dev
+  - zip -r 'Cookie' cookie
+
+deploy:
+  provider: releases
+  api_key:
+    secure: KxOswvTMfejuugo1wVggRWFMcnFQLJN8ymV7NgORNuJEKxx5fd4VWFvHNGBeg1V5+KX1Jxf4SwbVmaJ3QXU4oS7ONi5+kFo65Izdmf4fbMEiA5eFyorBEzemfFukm7n6gLeWqIkoOJb9M8A3JjRzv4BpkEVhjkyT1HH2ky5yEfILOBFBmcndJVwp/Q6c9YPIo1fGssV07gag+69KsaW/oVGWvsXR95BOW9JxH1umAXv9Oc1WuiN4f+gj2wZ3EwK6hjSeNGYDgGCR+BaE+mgXef2c8NfZwgW7dCB9G69i6N/JJqMV6CFmSXgRT+KfnJLD1ayZ9+Wr8Qd69Ma37dSRFzKDraeQGAzJyAAELPCd5uU8tJMxv5H98Z2WB4uRsIiKnl9xBn1E4/z52wNI0Syv98qYpU6pkC+ftvjkNVjFkMxERHR8f08zBvf5R1dkKfo1ZsitcaHGCWl9Ky1OcUJMzU/gUmmV1sjxC7M2dDI4TtspfCHzPQdIsxbpB1Vy+MsAssgHhQueCRqwI3LpazUMtxUF9rwEcTIxrlN50UzF5V7PmZ5hpPgda5Dt9WEi1v7B6QEyIl/m6TVSBJpypMqWbPUs3/hq61Oj9uRJvc1fHQzBj26nwSiZ0jgdkWFIPoInusE4yL2sRkseOloTPbAh+Kj826VPsf56DYAYfaTzCmY=
+  file: Cookie.zip
+  on:
+    php: 7.0
+    tags: true
+    repo: EllisLab/Cookie
+    condition: $TRAVIS_PULL_REQUEST = false
