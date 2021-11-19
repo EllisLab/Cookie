@@ -64,6 +64,11 @@ This is a single tag that stores a cookie with the given content and name.
 
 ## Change Log
 
+### 1.0.1
+
+- Added add-on icon
+- Updated license information
+
 ### 1.0.0
 
 - Initial release. Boom!
