@@ -65,7 +65,7 @@ class Cookie {
 	{
 		$name = ee()->TMPL->fetch_param('name');
 		$value = ee()->TMPL->fetch_param('value');
-		$expire = ee()->TMPL->fetch_param('expire');
+		$expire = (int)ee()->TMPL->fetch_param('expire');
 
 		ee()->input->set_cookie($name, $value, $expire);
 	}
